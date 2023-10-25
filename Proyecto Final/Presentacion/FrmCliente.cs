@@ -22,7 +22,7 @@ namespace Presentacion
 
         private void limpiar()
         {
-            this.txbCodigo.Text = "Autonumerico";
+            this.txbCodigo.Text = "Autonumérico";
             this.txbNombre.Text = "";
             this.txbApellidoP.Text = "";
             this.txbApellidoM.Text = "";
