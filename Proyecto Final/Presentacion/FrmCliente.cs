@@ -85,7 +85,7 @@ namespace Presentacion
 
                 if (ObjRNCliente.Insertar(ObjCliente, ObjTelefonoCli, ObjDireccionCli))
                 {
-                    MessageBox.Show("Usuario insertado con exito!");
+                    MessageBox.Show("Usuario insertado con éxito!");
                     this.txbCodigo.Text = ObjCliente.idCliente.ToString();
                     this.dgvCliente.DataSource = ObjRNCliente.TraerClientes(ObjCliente.idCliente);
                     Utilitarios.Utilitarios.id = ObjCliente.idCliente;
@@ -97,7 +97,7 @@ namespace Presentacion
                 this.dgvCliente.DataSource = ObjRNCliente.TraerClientes(Convert.ToInt32(this.txbCodigo.Text));
             }
         }
-
+        //anotaciones
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             this.limpiar();
