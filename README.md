@@ -62,4 +62,4 @@ Esta interfaz solo el administrador puede ingresar y realizar cambios
 - Este proyecto es parte de un trabajo académico para la materia de Desarrollo de Sistemas II.
 
 
-¡Gracias por tu interés en el proyecto "CAFE CRUCEÑO - Sistema de Información 1"!
+¡Gracias por tu interés en el proyecto "CAFE CRUCEÑO"!
