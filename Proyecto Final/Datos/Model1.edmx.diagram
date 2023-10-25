@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="839f5d14e12f4285911c1686491dd5cc" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="CAFETERIA2023Model.Clientes" Width="1.5" PointX="3.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CAFETERIA2023Model.DireccionCli" Width="1.5" PointX="7.5" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CAFETERIA2023Model.Factura" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CAFETERIA2023Model.TelefonoCli" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CAFETERIA2023Model.TelefonoVen" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CAFETERIA2023Model.Vendedor" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <AssociationConnector Association="CAFETERIA2023Model.FK__Direccion__idCli__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="CAFETERIA2023Model.FK__Factura__idClien__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="CAFETERIA2023Model.FK__TelefonoC__idCli__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="CAFETERIA2023Model.FK__Factura__idVende__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="CAFETERIA2023Model.FK__TelefonoV__idVen__48CFD27E" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CAFETERIA2023Model.VistaVendedores" Width="1.875" PointX="12.625" PointY="1.75" />
+        <EntityTypeShape EntityType="CAFETERIA2023Model.VistaCliente" Width="2" PointX="16.875" PointY="1.5" />
+        <EntityTypeShape EntityType="CAFETERIA2023Model.VistaFactura" Width="1.5" PointX="19.125" PointY="1.375" />
+        <EntityTypeShape EntityType="CAFETERIA2023Model.TipoProducto" Width="1.5" PointX="8.375" PointY="10.5" />
+        <EntityTypeShape EntityType="CAFETERIA2023Model.Producto" Width="1.5" PointX="10.625" PointY="9.875" />
+        <AssociationConnector Association="CAFETERIA2023Model.FK__Factura__idProdu__5070F446" />
+        <AssociationConnector Association="CAFETERIA2023Model.FK__Producto__idTipo__412EB0B6" />
+        <EntityTypeShape EntityType="CAFETERIA2023Model.VistaTopClientes" Width="1.5" PointX="15" PointY="3.625" />
+        <EntityTypeShape EntityType="CAFETERIA2023Model.VistaProductos" Width="1.5" PointX="15" PointY="1.375" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

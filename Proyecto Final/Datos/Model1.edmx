@@ -1,0 +1,911 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CAFETERIA2023Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="apellidoPaterno" Type="varchar" MaxLength="50" />
+          <Property Name="apellidoMaterno" Type="varchar" MaxLength="50" />
+          <Property Name="genero" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="DireccionCli">
+          <Key>
+            <PropertyRef Name="idDirCli" />
+          </Key>
+          <Property Name="idDirCli" Type="int" Nullable="false" />
+          <Property Name="idCliente" Type="int" />
+          <Property Name="calles" Type="varchar" MaxLength="100" />
+          <Property Name="numero" Type="int" />
+          <Property Name="municipio" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Factura">
+          <Key>
+            <PropertyRef Name="idFactura" />
+          </Key>
+          <Property Name="idFactura" Type="int" Nullable="false" />
+          <Property Name="idCliente" Type="int" />
+          <Property Name="idVendedor" Type="int" />
+          <Property Name="idProducto" Type="int" />
+          <Property Name="total" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="cantidad" Type="int" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idProducto" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+          <Property Name="precio" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="idTipoProd" Type="int" />
+          <Property Name="disponible" Type="varchar" MaxLength="2" />
+          <Property Name="descripcion" Type="nvarchar(max)" />
+          <Property Name="stock" Type="int" />
+        </EntityType>
+        <EntityType Name="TelefonoCli">
+          <Key>
+            <PropertyRef Name="idTelfCli" />
+          </Key>
+          <Property Name="idTelfCli" Type="int" Nullable="false" />
+          <Property Name="idCliente" Type="int" />
+          <Property Name="numero" Type="int" />
+        </EntityType>
+        <EntityType Name="TelefonoVen">
+          <Key>
+            <PropertyRef Name="idTelfVen" />
+          </Key>
+          <Property Name="idTelfVen" Type="int" Nullable="false" />
+          <Property Name="idVendedor" Type="int" />
+          <Property Name="numero" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TipoProducto">
+          <Key>
+            <PropertyRef Name="idTipoProducto" />
+          </Key>
+          <Property Name="idTipoProducto" Type="int" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Vendedor">
+          <Key>
+            <PropertyRef Name="idVendedor" />
+          </Key>
+          <Property Name="idVendedor" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="apellidoPaterno" Type="varchar" MaxLength="50" />
+          <Property Name="apellidoMaterno" Type="varchar" MaxLength="50" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" />
+          <Property Name="clave" Type="varchar" MaxLength="50" />
+          <Property Name="calle" Type="varchar" MaxLength="20" />
+          <Property Name="numero" Type="varchar" MaxLength="20" />
+          <Property Name="municipio" Type="varchar" MaxLength="20" />
+          <Property Name="rol" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'CAFETERIA.dbo.VistaCliente' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VistaCliente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido Paterno" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido Materno" Type="varchar" MaxLength="50" />
+          <Property Name="Genero" Type="varchar" MaxLength="20" />
+          <Property Name="Numero de telefono" Type="int" />
+          <Property Name="Municipio" Type="varchar" MaxLength="50" />
+          <Property Name="Calle" Type="varchar" MaxLength="100" />
+          <Property Name="Numero domicilio" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'CAFETERIA.dbo.VistaFactura' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VistaFactura">
+          <Key>
+            <PropertyRef Name="Nro Factura" />
+          </Key>
+          <Property Name="Nro Factura" Type="int" Nullable="false" />
+          <Property Name="Cliente" Type="varchar" MaxLength="152" />
+          <Property Name="Vendedor" Type="varchar" MaxLength="152" />
+          <Property Name="Producto" Type="varchar" MaxLength="100" />
+          <Property Name="Precio Unitario" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Cantidad" Type="int" />
+          <Property Name="Total" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="ID Cliente" Type="int" />
+          <Property Name="ID Vendedor" Type="int" />
+          <Property Name="ID Producto" Type="int" />
+          <Property Name="Fecha" Type="date" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'CAFETERIA.dbo.VistaProductos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VistaProductos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Precio Unitario" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Tipo" Type="varchar" MaxLength="50" />
+          <Property Name="Stock" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'CAFETERIA.dbo.VistaTopClientes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VistaTopClientes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Cliente" Type="varchar" MaxLength="152" />
+          <Property Name="Total Compras" Type="decimal" Precision="38" Scale="2" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'CAFETERIA.dbo.VistaVendedores' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VistaVendedores">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido Paterno" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido Materno" Type="varchar" MaxLength="50" />
+          <Property Name="Usuario" Type="varchar" MaxLength="50" />
+          <Property Name="Clave" Type="varchar" MaxLength="50" />
+          <Property Name="Numero de Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="Calle" Type="varchar" MaxLength="20" />
+          <Property Name="Numero de Domicilio" Type="varchar" MaxLength="20" />
+          <Property Name="Municipio" Type="varchar" MaxLength="20" />
+          <Property Name="rol" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK__Direccion__idCli__7C4F7684">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="DireccionCli" Type="Self.DireccionCli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="DireccionCli">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Factura__idClien__7D439ABD">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Factura__idProdu__7F2BE32F">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Factura__idVende__7E37BEF6">
+          <End Role="Vendedor" Type="Self.Vendedor" Multiplicity="0..1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendedor">
+              <PropertyRef Name="idVendedor" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="idVendedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__idTipo__00200768">
+          <End Role="TipoProducto" Type="Self.TipoProducto" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoProducto">
+              <PropertyRef Name="idTipoProducto" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="idTipoProd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TelefonoC__idCli__01142BA1">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="TelefonoCli" Type="Self.TelefonoCli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="TelefonoCli">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TelefonoV__idVen__02084FDA">
+          <End Role="Vendedor" Type="Self.Vendedor" Multiplicity="0..1" />
+          <End Role="TelefonoVen" Type="Self.TelefonoVen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendedor">
+              <PropertyRef Name="idVendedor" />
+            </Principal>
+            <Dependent Role="TelefonoVen">
+              <PropertyRef Name="idVendedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="DashboardDatos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="totalVentas" Type="float" Mode="InOut" />
+          <Parameter Name="nprod" Type="int" Mode="InOut" />
+          <Parameter Name="nVen" Type="int" Mode="InOut" />
+          <Parameter Name="nCli" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="ProcProductosDelAnoActual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ProcProductosDelDiaActual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ProcTopProductosDelMes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ProdPreferidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="CAFETERIA2023ModelStoreContainer">
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DireccionCli" EntityType="Self.DireccionCli" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Factura" EntityType="Self.Factura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TelefonoCli" EntityType="Self.TelefonoCli" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TelefonoVen" EntityType="Self.TelefonoVen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vendedor" EntityType="Self.Vendedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VistaCliente" EntityType="Self.VistaCliente" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VistaCliente].[ID] AS [ID], 
+    [VistaCliente].[Nombre] AS [Nombre], 
+    [VistaCliente].[Apellido Paterno] AS [Apellido Paterno], 
+    [VistaCliente].[Apellido Materno] AS [Apellido Materno], 
+    [VistaCliente].[Genero] AS [Genero], 
+    [VistaCliente].[Numero de telefono] AS [Numero de telefono], 
+    [VistaCliente].[Municipio] AS [Municipio], 
+    [VistaCliente].[Calle] AS [Calle], 
+    [VistaCliente].[Numero domicilio] AS [Numero domicilio]
+    FROM [dbo].[VistaCliente] AS [VistaCliente]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VistaFactura" EntityType="Self.VistaFactura" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VistaFactura].[Nro Factura] AS [Nro Factura], 
+    [VistaFactura].[Cliente] AS [Cliente], 
+    [VistaFactura].[Vendedor] AS [Vendedor], 
+    [VistaFactura].[Producto] AS [Producto], 
+    [VistaFactura].[Precio Unitario] AS [Precio Unitario], 
+    [VistaFactura].[Cantidad] AS [Cantidad], 
+    [VistaFactura].[Total] AS [Total], 
+    [VistaFactura].[ID Cliente] AS [ID Cliente], 
+    [VistaFactura].[ID Vendedor] AS [ID Vendedor], 
+    [VistaFactura].[ID Producto] AS [ID Producto], 
+    [VistaFactura].[Fecha] AS [Fecha]
+    FROM [dbo].[VistaFactura] AS [VistaFactura]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VistaProductos" EntityType="Self.VistaProductos" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VistaProductos].[ID] AS [ID], 
+    [VistaProductos].[Nombre] AS [Nombre], 
+    [VistaProductos].[Precio Unitario] AS [Precio Unitario], 
+    [VistaProductos].[Tipo] AS [Tipo], 
+    [VistaProductos].[Stock] AS [Stock]
+    FROM [dbo].[VistaProductos] AS [VistaProductos]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VistaTopClientes" EntityType="Self.VistaTopClientes" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VistaTopClientes].[ID] AS [ID], 
+    [VistaTopClientes].[Cliente] AS [Cliente], 
+    [VistaTopClientes].[Total Compras] AS [Total Compras]
+    FROM [dbo].[VistaTopClientes] AS [VistaTopClientes]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VistaVendedores" EntityType="Self.VistaVendedores" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VistaVendedores].[ID] AS [ID], 
+    [VistaVendedores].[Nombre] AS [Nombre], 
+    [VistaVendedores].[Apellido Paterno] AS [Apellido Paterno], 
+    [VistaVendedores].[Apellido Materno] AS [Apellido Materno], 
+    [VistaVendedores].[Usuario] AS [Usuario], 
+    [VistaVendedores].[Clave] AS [Clave], 
+    [VistaVendedores].[Numero de Telefono] AS [Numero de Telefono], 
+    [VistaVendedores].[Calle] AS [Calle], 
+    [VistaVendedores].[Numero de Domicilio] AS [Numero de Domicilio], 
+    [VistaVendedores].[Municipio] AS [Municipio], 
+    [VistaVendedores].[rol] AS [rol]
+    FROM [dbo].[VistaVendedores] AS [VistaVendedores]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Direccion__idCli__7C4F7684" Association="Self.FK__Direccion__idCli__7C4F7684">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="DireccionCli" EntitySet="DireccionCli" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Factura__idClien__7D439ABD" Association="Self.FK__Factura__idClien__7D439ABD">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Factura__idProdu__7F2BE32F" Association="Self.FK__Factura__idProdu__7F2BE32F">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Factura__idVende__7E37BEF6" Association="Self.FK__Factura__idVende__7E37BEF6">
+            <End Role="Vendedor" EntitySet="Vendedor" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__idTipo__00200768" Association="Self.FK__Producto__idTipo__00200768">
+            <End Role="TipoProducto" EntitySet="TipoProducto" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TelefonoC__idCli__01142BA1" Association="Self.FK__TelefonoC__idCli__01142BA1">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="TelefonoCli" EntitySet="TelefonoCli" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TelefonoV__idVen__02084FDA" Association="Self.FK__TelefonoV__idVen__02084FDA">
+            <End Role="Vendedor" EntitySet="Vendedor" />
+            <End Role="TelefonoVen" EntitySet="TelefonoVen" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CAFETERIA2023Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="genero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DireccionCli" Relationship="Self.FK__Direccion__idCli__3C69FB99" FromRole="Clientes" ToRole="DireccionCli" />
+          <NavigationProperty Name="Factura" Relationship="Self.FK__Factura__idClien__4E88ABD4" FromRole="Clientes" ToRole="Factura" />
+          <NavigationProperty Name="TelefonoCli" Relationship="Self.FK__TelefonoC__idCli__398D8EEE" FromRole="Clientes" ToRole="TelefonoCli" />
+        </EntityType>
+        <EntityType Name="DireccionCli">
+          <Key>
+            <PropertyRef Name="idDirCli" />
+          </Key>
+          <Property Name="idDirCli" Type="Int32" Nullable="false" />
+          <Property Name="idCliente" Type="Int32" />
+          <Property Name="calles" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="numero" Type="Int32" />
+          <Property Name="municipio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK__Direccion__idCli__3C69FB99" FromRole="DireccionCli" ToRole="Clientes" />
+        </EntityType>
+        <EntityType Name="Factura">
+          <Key>
+            <PropertyRef Name="idFactura" />
+          </Key>
+          <Property Name="idFactura" Type="Int32" Nullable="false" />
+          <Property Name="idCliente" Type="Int32" />
+          <Property Name="idVendedor" Type="Int32" />
+          <Property Name="idProducto" Type="Int32" />
+          <Property Name="total" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK__Factura__idClien__4E88ABD4" FromRole="Factura" ToRole="Clientes" />
+          <NavigationProperty Name="Vendedor" Relationship="Self.FK__Factura__idVende__4F7CD00D" FromRole="Factura" ToRole="Vendedor" />
+          <Property Name="cantidad" Type="Int32" />
+          <NavigationProperty Name="Producto" Relationship="CAFETERIA2023Model.FK__Factura__idProdu__5070F446" FromRole="Factura" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="TelefonoCli">
+          <Key>
+            <PropertyRef Name="idTelfCli" />
+          </Key>
+          <Property Name="idTelfCli" Type="Int32" Nullable="false" />
+          <Property Name="idCliente" Type="Int32" />
+          <Property Name="numero" Type="Int32" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK__TelefonoC__idCli__398D8EEE" FromRole="TelefonoCli" ToRole="Clientes" />
+        </EntityType>
+        <EntityType Name="TelefonoVen">
+          <Key>
+            <PropertyRef Name="idTelfVen" />
+          </Key>
+          <Property Name="idTelfVen" Type="Int32" Nullable="false" />
+          <Property Name="idVendedor" Type="Int32" />
+          <Property Name="numero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Vendedor" Relationship="Self.FK__TelefonoV__idVen__48CFD27E" FromRole="TelefonoVen" ToRole="Vendedor" />
+        </EntityType>
+        <EntityType Name="Vendedor">
+          <Key>
+            <PropertyRef Name="idVendedor" />
+          </Key>
+          <Property Name="idVendedor" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="clave" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Factura" Relationship="Self.FK__Factura__idVende__4F7CD00D" FromRole="Vendedor" ToRole="Factura" />
+          <NavigationProperty Name="TelefonoVen" Relationship="Self.FK__TelefonoV__idVen__48CFD27E" FromRole="Vendedor" ToRole="TelefonoVen" />
+          <Property Name="calle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="numero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="municipio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="rol" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__Direccion__idCli__3C69FB99">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="DireccionCli" Type="Self.DireccionCli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="DireccionCli">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Factura__idClien__4E88ABD4">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TelefonoC__idCli__398D8EEE">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="TelefonoCli" Type="Self.TelefonoCli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="TelefonoCli">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Factura__idVende__4F7CD00D">
+          <End Role="Vendedor" Type="Self.Vendedor" Multiplicity="0..1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendedor">
+              <PropertyRef Name="idVendedor" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="idVendedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TelefonoV__idVen__48CFD27E">
+          <End Role="Vendedor" Type="Self.Vendedor" Multiplicity="0..1" />
+          <End Role="TelefonoVen" Type="Self.TelefonoVen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendedor">
+              <PropertyRef Name="idVendedor" />
+            </Principal>
+            <Dependent Role="TelefonoVen">
+              <PropertyRef Name="idVendedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CAFETERIA2023Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+          <EntitySet Name="DireccionCli" EntityType="Self.DireccionCli" />
+          <EntitySet Name="Factura" EntityType="Self.Factura" />
+          <EntitySet Name="TelefonoCli" EntityType="Self.TelefonoCli" />
+          <EntitySet Name="TelefonoVen" EntityType="Self.TelefonoVen" />
+          <EntitySet Name="Vendedor" EntityType="Self.Vendedor" />
+          <AssociationSet Name="FK__Direccion__idCli__3C69FB99" Association="Self.FK__Direccion__idCli__3C69FB99">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="DireccionCli" EntitySet="DireccionCli" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Factura__idClien__4E88ABD4" Association="Self.FK__Factura__idClien__4E88ABD4">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TelefonoC__idCli__398D8EEE" Association="Self.FK__TelefonoC__idCli__398D8EEE">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="TelefonoCli" EntitySet="TelefonoCli" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Factura__idVende__4F7CD00D" Association="Self.FK__Factura__idVende__4F7CD00D">
+            <End Role="Vendedor" EntitySet="Vendedor" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TelefonoV__idVen__48CFD27E" Association="Self.FK__TelefonoV__idVen__48CFD27E">
+            <End Role="Vendedor" EntitySet="Vendedor" />
+            <End Role="TelefonoVen" EntitySet="TelefonoVen" />
+          </AssociationSet>
+          <EntitySet Name="VistaVendedores" EntityType="CAFETERIA2023Model.VistaVendedores" />
+          <EntitySet Name="VistaCliente" EntityType="CAFETERIA2023Model.VistaCliente" />
+          <EntitySet Name="VistaFactura" EntityType="CAFETERIA2023Model.VistaFactura" />
+          <FunctionImport Name="DashboardDatos">
+            <Parameter Name="totalVentas" Mode="InOut" Type="Double" />
+            <Parameter Name="nprod" Mode="InOut" Type="Int32" />
+            <Parameter Name="nVen" Mode="InOut" Type="Int32" />
+            <Parameter Name="nCli" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ProdPreferidos" ReturnType="Collection(CAFETERIA2023Model.ProdPreferidos_Result)" />
+          <EntitySet Name="TipoProducto" EntityType="CAFETERIA2023Model.TipoProducto" />
+          <FunctionImport Name="ProcProductosDelAnoActual" ReturnType="Collection(CAFETERIA2023Model.ProcProductosDelAnoActual_Result)" />
+          <FunctionImport Name="ProcProductosDelDiaActual" ReturnType="Collection(CAFETERIA2023Model.ProcProductosDelDiaActual_Result)" />
+          <FunctionImport Name="ProcTopProductosDelMes" ReturnType="Collection(CAFETERIA2023Model.ProcTopProductosDelMes_Result)" />
+          <EntitySet Name="Producto" EntityType="CAFETERIA2023Model.Producto" />
+          <AssociationSet Name="FK__Factura__idProdu__5070F446" Association="CAFETERIA2023Model.FK__Factura__idProdu__5070F446">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__idTipo__412EB0B6" Association="CAFETERIA2023Model.FK__Producto__idTipo__412EB0B6">
+            <End Role="TipoProducto" EntitySet="TipoProducto" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <EntitySet Name="VistaTopClientes" EntityType="CAFETERIA2023Model.VistaTopClientes" />
+          <EntitySet Name="VistaProductos" EntityType="CAFETERIA2023Model.VistaProductos" />
+        </EntityContainer>
+        <EntityType Name="VistaVendedores">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido_Paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido_Materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Clave" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Numero_de_Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Calle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Numero_de_Domicilio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Municipio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="rol" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VistaCliente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido_Paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido_Materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Genero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Numero_de_telefono" Type="Int32" />
+          <Property Name="Municipio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Numero_domicilio" Type="Int32" />
+        </EntityType>
+        <EntityType Name="VistaFactura">
+          <Key>
+            <PropertyRef Name="Nro_Factura" />
+          </Key>
+          <Property Name="Nro_Factura" Type="Int32" Nullable="false" />
+          <Property Name="Cliente" Type="String" MaxLength="152" FixedLength="false" Unicode="false" />
+          <Property Name="Vendedor" Type="String" MaxLength="152" FixedLength="false" Unicode="false" />
+          <Property Name="Producto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Precio_Unitario" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Cantidad" Type="Int32" />
+          <Property Name="Total" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ID_Cliente" Type="Int32" />
+          <Property Name="ID_Vendedor" Type="Int32" />
+          <Property Name="ID_Producto" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+        </EntityType>
+        <ComplexType Name="ProdPreferidos_Result">
+          <Property Type="String" Name="Producto" Nullable="true" MaxLength="151" />
+          <Property Type="Int32" Name="CantSalidas" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="TipoProducto">
+          <Key>
+            <PropertyRef Name="idTipoProducto" />
+          </Key>
+          <Property Name="idTipoProducto" Type="Int32" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Producto" Relationship="CAFETERIA2023Model.FK__Producto__idTipo__412EB0B6" FromRole="TipoProducto" ToRole="Producto" />
+        </EntityType>
+        <ComplexType Name="ProcProductosDelAnoActual_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="Precio_Unitario" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="Tipo" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ProcProductosDelDiaActual_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="Precio_Unitario" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="Tipo" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ProcTopProductosDelMes_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="Precio_Unitario" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="Tipo" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idProducto" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="idTipoProd" Type="Int32" />
+          <Property Name="disponible" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Factura" Relationship="CAFETERIA2023Model.FK__Factura__idProdu__5070F446" FromRole="Producto" ToRole="Factura" />
+          <NavigationProperty Name="TipoProducto" Relationship="CAFETERIA2023Model.FK__Producto__idTipo__412EB0B6" FromRole="Producto" ToRole="TipoProducto" />
+          <Property Name="stock" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__Factura__idProdu__5070F446">
+          <End Type="CAFETERIA2023Model.Producto" Role="Producto" Multiplicity="0..1" />
+          <End Type="CAFETERIA2023Model.Factura" Role="Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__idTipo__412EB0B6">
+          <End Type="CAFETERIA2023Model.TipoProducto" Role="TipoProducto" Multiplicity="0..1" />
+          <End Type="CAFETERIA2023Model.Producto" Role="Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoProducto">
+              <PropertyRef Name="idTipoProducto" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="idTipoProd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="VistaTopClientes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Cliente" Type="String" MaxLength="152" FixedLength="false" Unicode="false" />
+          <Property Name="Total_Compras" Type="Decimal" Precision="38" Scale="2" />
+        </EntityType>
+        <EntityType Name="VistaProductos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Precio_Unitario" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Stock" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping CdmEntityContainer="CAFETERIA2023Entities" StorageEntityContainer="CAFETERIA2023ModelStoreContainer">
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="CAFETERIA2023Model.Clientes">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
+                <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DireccionCli">
+            <EntityTypeMapping TypeName="CAFETERIA2023Model.DireccionCli">
+              <MappingFragment StoreEntitySet="DireccionCli">
+                <ScalarProperty Name="idDirCli" ColumnName="idDirCli" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="calles" ColumnName="calles" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Factura">
+            <EntityTypeMapping TypeName="CAFETERIA2023Model.Factura">
+              <MappingFragment StoreEntitySet="Factura">
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="idFactura" ColumnName="idFactura" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idVendedor" ColumnName="idVendedor" />
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TelefonoCli">
+            <EntityTypeMapping TypeName="CAFETERIA2023Model.TelefonoCli">
+              <MappingFragment StoreEntitySet="TelefonoCli">
+                <ScalarProperty Name="idTelfCli" ColumnName="idTelfCli" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TelefonoVen">
+            <EntityTypeMapping TypeName="CAFETERIA2023Model.TelefonoVen">
+              <MappingFragment StoreEntitySet="TelefonoVen">
+                <ScalarProperty Name="idTelfVen" ColumnName="idTelfVen" />
+                <ScalarProperty Name="idVendedor" ColumnName="idVendedor" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vendedor">
+            <EntityTypeMapping TypeName="CAFETERIA2023Model.Vendedor">
+              <MappingFragment StoreEntitySet="Vendedor">
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="idVendedor" ColumnName="idVendedor" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
+                <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VistaVendedores">
+            <EntityTypeMapping TypeName="CAFETERIA2023Model.VistaVendedores">
+              <MappingFragment StoreEntitySet="VistaVendedores">
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+                <ScalarProperty Name="Numero_de_Domicilio" ColumnName="Numero de Domicilio" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Numero_de_Telefono" ColumnName="Numero de Telefono" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Apellido_Materno" ColumnName="Apellido Materno" />
+                <ScalarProperty Name="Apellido_Paterno" ColumnName="Apellido Paterno" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VistaCliente">
+            <EntityTypeMapping TypeName="CAFETERIA2023Model.VistaCliente">
+              <MappingFragment StoreEntitySet="VistaCliente">
+                <ScalarProperty Name="Numero_domicilio" ColumnName="Numero domicilio" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+                <ScalarProperty Name="Numero_de_telefono" ColumnName="Numero de telefono" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="Apellido_Materno" ColumnName="Apellido Materno" />
+                <ScalarProperty Name="Apellido_Paterno" ColumnName="Apellido Paterno" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VistaFactura">
+            <EntityTypeMapping TypeName="CAFETERIA2023Model.VistaFactura">
+              <MappingFragment StoreEntitySet="VistaFactura">
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="ID_Producto" ColumnName="ID Producto" />
+                <ScalarProperty Name="ID_Vendedor" ColumnName="ID Vendedor" />
+                <ScalarProperty Name="ID_Cliente" ColumnName="ID Cliente" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio_Unitario" ColumnName="Precio Unitario" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="Nro_Factura" ColumnName="Nro Factura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DashboardDatos" FunctionName="CAFETERIA2023Model.Store.DashboardDatos" />
+          <FunctionImportMapping FunctionImportName="ProdPreferidos" FunctionName="CAFETERIA2023Model.Store.ProdPreferidos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CAFETERIA2023Model.ProdPreferidos_Result">
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="CantSalidas" ColumnName="CantSalidas" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="TipoProducto">
+            <EntityTypeMapping TypeName="CAFETERIA2023Model.TipoProducto">
+              <MappingFragment StoreEntitySet="TipoProducto">
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="idTipoProducto" ColumnName="idTipoProducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ProcProductosDelAnoActual" FunctionName="CAFETERIA2023Model.Store.ProcProductosDelAnoActual">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CAFETERIA2023Model.ProcProductosDelAnoActual_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Precio_Unitario" ColumnName="Precio Unitario" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ProcProductosDelDiaActual" FunctionName="CAFETERIA2023Model.Store.ProcProductosDelDiaActual">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CAFETERIA2023Model.ProcProductosDelDiaActual_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Precio_Unitario" ColumnName="Precio Unitario" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ProcTopProductosDelMes" FunctionName="CAFETERIA2023Model.Store.ProcTopProductosDelMes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CAFETERIA2023Model.ProcTopProductosDelMes_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Precio_Unitario" ColumnName="Precio Unitario" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="CAFETERIA2023Model.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="disponible" ColumnName="disponible" />
+                <ScalarProperty Name="idTipoProd" ColumnName="idTipoProd" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VistaTopClientes">
+            <EntityTypeMapping TypeName="CAFETERIA2023Model.VistaTopClientes">
+              <MappingFragment StoreEntitySet="VistaTopClientes">
+                <ScalarProperty Name="Total_Compras" ColumnName="Total Compras" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VistaProductos">
+            <EntityTypeMapping TypeName="CAFETERIA2023Model.VistaProductos">
+              <MappingFragment StoreEntitySet="VistaProductos">
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Precio_Unitario" ColumnName="Precio Unitario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
