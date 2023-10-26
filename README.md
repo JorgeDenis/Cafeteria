@@ -19,9 +19,6 @@ Para entrar se necesita un usuario y una contraseña
    ![Interfaz de Inicio](img/InterfazLogin.jpeg)
 ### Interfaz Principal
  ![Interfaz Principal](img/InterfazInicio.jpeg)
-### Usuario: 
-Habra una ventana donde estaran los datos personales del usuario que haya ingresado   
-![usuario](img/usuario.gif)
 
 El Administrador tendra acceso a la interfaz Vendedores y podra añadir más
 ![admin](img/adminvendedores.jpeg)
