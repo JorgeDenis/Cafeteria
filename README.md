@@ -12,7 +12,7 @@ Este repositorio contiene el código y la documentación relacionados con el sis
 Imagenes y videos de la Interfaz y Diagrama de la Base de Datos (Aroma Café Cruceño) :
 
 ### Diagrama de nuestra base de datos:
-  ![Diagrama de la base de datos](img/diagrama.jpeg)
+  ![Diagrama de la base de datos](img/diagrama.png)
 ### Login:
 Para entrar se necesita un usuario y una contraseña
    ![Image text](img/GIF.gif)
@@ -26,23 +26,23 @@ Mientras que el vendedor no tendra acceso y no podra ver esta interfaz
 ![vendedor](img/usuariovendedor.jpeg)
 ### Interfaz Productos:
 En esta interfaz se ingresara los productos de Aroma Café Cruceño
-![Interfaz de Producto](img/productos.jpeg)
+![Interfaz de Producto](img/productos.png)
 ### Interfaz Clientes:
-![Interfaz de Producto](img/clientes.jpeg)
+![Interfaz de Producto](img/clientes.png)
 ### Interfaz Ventas:
-![Interfaz de Producto](img/ventas.jpeg)
+![Interfaz de Producto](img/ventas.png)
 ### Reportes de Ventas:
 Se puede buscar los datos de las ventas por fecha, por rango, por mes, día y también por año
-![Interfaz de Producto](img/ReporteVentas.jpeg)
+![Interfaz de Producto](img/ReporteVentas.png)
 ### Reportes de Clientes:
 Se puede buscar los datos de los clientes por fecha, por rango, por mes, día y también por año
-![Interfaz de Reporte clientes](img/ReporteVentasClientes.jpeg)
+![Interfaz de Reporte clientes](img/ReporteVentasClientes.png)
 ### Reportes de Vendedores:
 Se puede buscar los datos de los vendedores por fecha, por rango, por mes, día y también por año
-![Interfaz de Producto](img/ReporteVendedores.jpeg)
+![Interfaz de Producto](img/ReporteVendedores.png)
 ### Interfaz Vendedores:
 Esta interfaz solo el administrador puede ingresar y realizar cambios
-![Interfaz de Producto](img/Vendedores.jpeg)
+![Interfaz de Producto](img/Vendedores.png)
 
 
 
